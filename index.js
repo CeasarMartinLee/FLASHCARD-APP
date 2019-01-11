@@ -1,9 +1,3 @@
-// let data = {
-//     question: ["Arya's fighting style is called?", "Sandor Clegane is known as ...", "What's the name of Jon Snows's sword?", "What is the only thing that can put out volatile Wildfire?", "The Night King was created using a dagger made of:", "What is the color of sky?"],
-//     answer: ["Water Dancing", "The Hound", "Longclaw", "Sand", "Dragonglass", "Blue"],
-//     category: ["GameOfThrones", "GameOfThrones", "GameOfThrones", "GameOfThrones", "GameOfThrones", "Nature"]
-// }
-
 const flashcard = [
     {
         "question": "Arya's fighting style is called?",
