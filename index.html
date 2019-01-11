@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
- <head>
-   <title>Flash Card App</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">  
-   <link rel="stylesheet" type="text/css" media="screen" href="index.css">
-   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+
+<head>
+    <title>Flash Card App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 
 
- </head>
- <body>
+</head>
+
+<body>
     <main>
         <div>
-            <!-- <form id="myForm">
+            <form id="myForm">
                 <select id="categoryID">
-                    <option>Choose a category</option>
+                    <option value="All" selected>All Questions</option>
+                    <option value="GameOfThrones">Movies</option>
+                    <option value="Geography">Geography</option>
                 </select>
-            </form> -->
+            </form>
             <div class="delButton">
                 <button id="delB" type="default" onclick="deleteQuestion()">DELETE</button>
             </div>
@@ -37,20 +41,21 @@
                     <textarea id="answer"></textarea>
                 </div>
                 <div class="formSection">
-                        <label for="category">Category:</label>
-                        <textarea id="category"></textarea>
-                    </div>
+                    <label for="category">Category:</label>
+                    <textarea id="category"></textarea>
+                </div>
                 <div class="button">
                     <button type="default">ADD</button>
                 </div>
             </form>
         </div>
-      </main>
-      <footer>
+    </main>
+    <footer>
         <p>Made with ❤ at Codaisseur</p>
-      </footer>
+    </footer>
 
     <script src="index.js"></script>
 
- </body>
+</body>
+
 </html>

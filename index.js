@@ -41,6 +41,13 @@ delB.style.display = "none"
 function nextQuestion() {
     h2.style.display = "none";
     delB.style.display = "block"
+
+    // let e = document.getElementById('categoryID');
+    // let optionValue = e[e.selectedIndex].value
+    // console.log(optionValue)
+    // flashcard = flashcard.filter(item => item.category === "Geography")
+    // console.log(flashcard);
+
     let n = Math.floor(Math.random() * flashcard.length)
     document.getElementById('h1').innerHTML = flashcard[n].question
     document.getElementById('h2').innerHTML = flashcard[n].answer
@@ -76,6 +83,8 @@ async function addQuestion() {
     document.getElementById('answer').value = ''
     document.getElementById('category').value = ''
     alert('Successfully Added!')
+
+    console.log(flashcard);
 }
 
 async function deleteQuestion() {
@@ -91,6 +100,8 @@ async function deleteQuestion() {
         },
         body: JSON.stringify(flashcard)
     })
+
+    console.log(flashcard);
 
     alert('Successfully Deleted!')
     nextQuestion()
