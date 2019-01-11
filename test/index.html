@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Flash Card App</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">  
+   <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+
+
+ </head>
+ <body>
+    <main>
+        <div>
+            <div class="delButton">
+                <button id="delB" type="default" onclick="deleteQuestion()">DELETE</button>
+            </div>
+            <h1 id="h1">CLICK FOR QUESTION</h1>
+        </div>
+        <div class="showAnswer">
+            <button type="default" onclick="showAnswer()">SHOW ANSWER</button>
+        </div>
+        <h2 id="h2">ANSWER</h2>
+
+        <div class="addBox">
+            <form onsubmit="addQuestion(); return false">
+                <div class="formSection">
+                    <label for="question">Question:</label>
+                    <textarea id="question"></textarea>
+                </div>
+                <div class="formSection">
+                    <label for="answer">Answer:</label>
+                    <textarea id="answer"></textarea>
+                </div>
+                <div class="formSection">
+                        <label for="category">Category:</label>
+                        <textarea id="category"></textarea>
+                    </div>
+                <div class="button">
+                    <button type="default">ADD</button>
+                </div>
+            </form>
+        </div>
+      </main>
+      <footer>
+        <p>Made with ❤ at Codaisseur</p>
+      </footer>
+
+    <script src="index.js"></script>
+
+ </body>
+</html>
