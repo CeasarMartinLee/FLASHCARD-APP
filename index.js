@@ -1,35 +1,39 @@
-const flashcard = [
-    {
-        "question": "Arya's fighting style is called?",
-        "answer": "Water Dancing",
-        "category": "GameOfThrones"
-    },
-    {
-        "question": "Sandor Clegane is known as ...",
-        "answer": "The Hound",
-        "category": "GameOfThrones"
-    },
-    {
-        "question": "What's the name of Jon Snows's sword?",
-        "answer": "Longclaw",
-        "category": "GameOfThrones"
-    },
-    {
-        "question": "What is the capital city of the Netherlands",
-        "answer": "Amsterdam",
-        "category": "Geography"
-    },
-    {
-        "question": "What is the capital city of the Turkey",
-        "answer": "Ankara",
-        "category": "Geography"
-    },
-    {
-        "question": "What is the capital city of the Philippines",
-        "answer": "Manilla",
-        "category": "Geography"
-    }
-]
+// const flashcard = 
+
+// [
+//     {
+//       "category": "GameOfThrones",
+//       "answer": "Water Dancing",
+//       "question": "Arya's fighting style is called?"
+//     },
+//     {
+//       "category": "GameOfThrones",
+//       "answer": "The Hound",
+//       "question": "Sandor Clegane is known as ..."
+//     },
+//     {
+//       "category": "GameOfThrones",
+//       "answer": "Longclaw",
+//       "question": "What's the name of Jon Snows's sword?"
+//     },
+//     {
+//       "category": "Geography",
+//       "answer": "Amsterdam",
+//       "question": "What is the capital city of the Netherlands"
+//     },
+//     {
+//       "category": "Geography",
+//       "answer": "Ankara",
+//       "question": "What is the capital city of the Turkey"
+//     },
+//     {
+//       "category": "Geography",
+//       "answer": "Manilla",
+//       "question": "What is the capital city of the Philippines"
+//     }
+//   ]
+
+let flashcard = []
 
 const delB = document.getElementById('delB')
 delB.style.display = "none"
@@ -38,9 +42,6 @@ function nextQuestion() {
     h2.style.display = "none";
     delB.style.display = "block"
     let n = Math.floor(Math.random() * flashcard.length)
-    //data.category[n] should be equal to selected data category
-    // console.log(n)
-    // console.log(data.question[n])
     document.getElementById('h1').innerHTML = flashcard[n].question
     document.getElementById('h2').innerHTML = flashcard[n].answer
     window.n = n
@@ -48,7 +49,7 @@ function nextQuestion() {
 
 h1.addEventListener("click", nextQuestion);
 
-function addQuestion() {
+async function addQuestion() {
     let questionVal = document.getElementById('question').value
     let answerVal = document.getElementById('answer').value
     let categoryVal = document.getElementById('category').value
@@ -57,24 +58,40 @@ function addQuestion() {
         return null
     }
 
-    flashcard.push({ "question": questionVal, "answer": answerVal, "category": categoryVal })
+    flashcard.push({
+        "question": questionVal, "answer": answerVal,
+        "category": categoryVal
+    })
+
+    const request = await fetch('https://api.jsonbin.io/b/5c387ca505d34b26f2076228', {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(flashcard)
+    })
 
     document.getElementById('question').value = ''
     document.getElementById('answer').value = ''
     document.getElementById('category').value = ''
     alert('Successfully Added!')
-
-    console.log(flashcard)
 }
 
-function deleteQuestion() {
+async function deleteQuestion() {
     let n = window.n
     delete flashcard[n]
-    // data.question.splice(n, 1)
-    // data.answer.splice(n, 1)
-    // data.category.splice(n, 1)
-    console.log(flashcard)
-    // console.log(data.question.length)
+    flashcard = flashcard.filter(Boolean);
+
+    const request = await fetch('https://api.jsonbin.io/b/5c387ca505d34b26f2076228', {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(flashcard)
+    })
+
     alert('Successfully Deleted!')
     nextQuestion()
 }
@@ -97,10 +114,13 @@ function doesNotPassAllValidations(questionVal, answerVal, categoryVal) {
     return false
 }
 
-//Category feature
-// var uniqueCategory = [...new Set(data.category)]
-// var select = document.getElementById("categoryID"); 
-// for(var i = 0; i < uniqueCategory.length; i++) {
-//     var opt = uniqueCategory[i];
-//     select.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
-// }
+const getJson = async function () {
+    const request = await fetch('https://api.jsonbin.io/b/5c387ca505d34b26f2076228/latest')
+    const json = await request.json()
+    flashcard = json
+
+    nextQuestion()
+}
+
+getJson()
+
